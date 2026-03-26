@@ -6,6 +6,7 @@ gem 'rails', '~> 8.0'
 gem 'sqlite3', '~> 2.0'
 gem 'puma', '>= 5.0'
 gem 'jbuilder'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
