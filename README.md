@@ -18,6 +18,14 @@ bundle install
 bundle exec rails db:create db:migrate
 ```
 
+## 起動方法
+
+```bash
+bundle exec rails server
+```
+
+起動後、ブラウザで http://localhost:3000 にアクセスしてください。停止するには `Ctrl-C` を押します。
+
 ## テストの実行
 
 ```bash
