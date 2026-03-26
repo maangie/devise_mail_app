@@ -7,10 +7,7 @@ gem 'sqlite3', '~> 2.0'
 gem 'puma', '>= 5.0'
 gem 'jbuilder'
 gem 'devise'
-gem 'sprockets-rails'
-gem 'bootstrap-sass', '~> 3.4'
-gem 'jquery-rails'
-gem 'sassc-rails'
+gem 'cssbundling-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
