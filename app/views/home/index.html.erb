@@ -7,15 +7,17 @@
 <% if user_signed_in? %>
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card shadow border-0">
+      <div class="card card-loggedin">
         <div class="card-body text-center py-4">
-          <i class="bi bi-person-check-fill display-4 text-success mb-3 d-block"></i>
-          <h5 class="card-title">ログイン中</h5>
-          <p class="card-text text-muted">
+          <div class="card-icon-wrap">
+            <i class="bi bi-person-check-fill"></i>
+          </div>
+          <h5 class="card-title fw-bold">ログイン中</h5>
+          <p class="card-text text-muted mb-3">
             <i class="bi bi-envelope me-1"></i><%= current_user.email %>
           </p>
           <%= link_to destroy_user_session_path,
-                class: 'btn btn-outline-danger',
+                class: 'btn btn-outline-danger px-4',
                 data: { turbo_method: :delete } do %>
             <i class="bi bi-box-arrow-right me-1"></i>ログアウト
           <% end %>
@@ -26,24 +28,28 @@
 <% else %>
   <div class="row justify-content-center g-4">
     <div class="col-md-4">
-      <div class="card shadow border-0 h-100 text-center">
-        <div class="card-body py-4">
-          <i class="bi bi-door-open-fill display-4 text-primary mb-3 d-block"></i>
-          <h5 class="card-title">すでに登録済みの方</h5>
-          <p class="card-text text-muted small">メールアドレスとパスワードでログインできます</p>
-          <%= link_to new_user_session_path, class: 'btn btn-primary mt-2' do %>
+      <div class="card card-login h-100 text-center">
+        <div class="card-body py-4 px-4">
+          <div class="card-icon-wrap">
+            <i class="bi bi-door-open-fill"></i>
+          </div>
+          <h5 class="card-title fw-bold">すでに登録済みの方</h5>
+          <p class="card-text text-muted small mb-3">メールアドレスとパスワードでログインできます</p>
+          <%= link_to new_user_session_path, class: 'btn btn-primary px-4' do %>
             <i class="bi bi-box-arrow-in-right me-1"></i>ログイン
           <% end %>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card shadow border-0 h-100 text-center">
-        <div class="card-body py-4">
-          <i class="bi bi-person-plus-fill display-4 text-success mb-3 d-block"></i>
-          <h5 class="card-title">初めての方</h5>
-          <p class="card-text text-muted small">メールアドレスで新規アカウントを作成できます</p>
-          <%= link_to new_user_registration_path, class: 'btn btn-success mt-2' do %>
+      <div class="card card-register h-100 text-center">
+        <div class="card-body py-4 px-4">
+          <div class="card-icon-wrap">
+            <i class="bi bi-person-plus-fill"></i>
+          </div>
+          <h5 class="card-title fw-bold">初めての方</h5>
+          <p class="card-text text-muted small mb-3">メールアドレスで新規アカウントを作成できます</p>
+          <%= link_to new_user_registration_path, class: 'btn btn-success px-4' do %>
             <i class="bi bi-pencil-square me-1"></i>新規登録
           <% end %>
         </div>
