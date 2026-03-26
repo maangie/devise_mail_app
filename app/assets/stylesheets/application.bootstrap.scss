@@ -1,9 +1,9 @@
 // Bootstrap 変数のカスタマイズ
-$primary: #667eea;
-$success: #28a745;
-
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+@use 'bootstrap/scss/bootstrap' with (
+  $primary: #667eea,
+  $success: #28a745
+);
+@use 'bootstrap-icons/font/bootstrap-icons';
 
 body {
   background-color: #f5f5f5;
