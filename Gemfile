@@ -17,6 +17,7 @@ end
 
 group :development do
   gem 'web-console'
+  gem 'letter_opener'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
