@@ -26,5 +26,8 @@ module DeviseMailApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Bootstrap Icons のフォントを Propshaft のアセットパスに追加
+    config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font")
   end
 end

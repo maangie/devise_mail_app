@@ -7,6 +7,7 @@ gem 'sqlite3', '~> 2.0'
 gem 'puma', '>= 5.0'
 gem 'jbuilder'
 gem 'devise'
+gem 'propshaft'
 gem 'cssbundling-rails'
 
 group :development, :test do
