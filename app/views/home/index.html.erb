@@ -1,52 +1,50 @@
-<div class="text-center py-5 mb-4 rounded-3"
-     style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-  <i class="bi bi-envelope-heart display-1 mb-3 d-block"></i>
-  <h1 class="display-5 fw-bold">DeviseMailApp へようこそ！</h1>
-  <p class="lead mb-0">メール認証付きのサンプルアプリです ✨</p>
+<div class="hero-section text-center">
+  <div class="hero-icon">&#9993;</div>
+  <h1>DeviseMailApp へようこそ！</h1>
+  <p class="lead">メール認証付きのサンプルアプリです ✨</p>
 </div>
 
 <% if user_signed_in? %>
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow border-0">
-        <div class="card-body text-center py-4">
-          <i class="bi bi-person-check-fill display-4 text-success mb-3 d-block"></i>
-          <h5 class="card-title">ログイン中</h5>
-          <p class="card-text text-muted">
-            <i class="bi bi-envelope me-1"></i><%= current_user.email %>
-          </p>
-          <%= link_to destroy_user_session_path,
-                class: 'btn btn-outline-danger',
-                data: { turbo_method: :delete } do %>
-            <i class="bi bi-box-arrow-right me-1"></i>ログアウト
-          <% end %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-success">
+        <div class="panel-heading text-center">
+          <h3 class="panel-title">ログイン中</h3>
+        </div>
+        <div class="panel-body text-center">
+          <p><span class="glyphicon glyphicon-user"></span> <%= current_user.email %></p>
+          <%= link_to 'ログアウト', destroy_user_session_path,
+                class: 'btn btn-danger',
+                data: { method: :delete } %>
         </div>
       </div>
     </div>
   </div>
 <% else %>
-  <div class="row justify-content-center g-4">
-    <div class="col-md-4">
-      <div class="card shadow border-0 h-100 text-center">
-        <div class="card-body py-4">
-          <i class="bi bi-door-open-fill display-4 text-primary mb-3 d-block"></i>
-          <h5 class="card-title">すでに登録済みの方</h5>
-          <p class="card-text text-muted small">メールアドレスとパスワードでログインできます</p>
-          <%= link_to new_user_session_path, class: 'btn btn-primary mt-2' do %>
-            <i class="bi bi-box-arrow-in-right me-1"></i>ログイン
-          <% end %>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h3 class="panel-title">
+            <span class="glyphicon glyphicon-log-in"></span> すでに登録済みの方
+          </h3>
+        </div>
+        <div class="panel-body text-center">
+          <p>メールアドレスとパスワードでログインできます</p>
+          <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-primary btn-lg' %>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card shadow border-0 h-100 text-center">
-        <div class="card-body py-4">
-          <i class="bi bi-person-plus-fill display-4 text-success mb-3 d-block"></i>
-          <h5 class="card-title">初めての方</h5>
-          <p class="card-text text-muted small">メールアドレスで新規アカウントを作成できます</p>
-          <%= link_to new_user_registration_path, class: 'btn btn-success mt-2' do %>
-            <i class="bi bi-pencil-square me-1"></i>新規登録
-          <% end %>
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h3 class="panel-title">
+            <span class="glyphicon glyphicon-pencil"></span> 初めての方
+          </h3>
+        </div>
+        <div class="panel-body text-center">
+          <p>メールアドレスで新規アカウントを作成できます</p>
+          <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-success btn-lg' %>
         </div>
       </div>
     </div>
