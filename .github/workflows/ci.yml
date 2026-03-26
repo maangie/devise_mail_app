@@ -21,6 +21,18 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: npm パッケージのインストール
+        run: yarn install --frozen-lockfile
+
+      - name: CSS のビルド
+        run: yarn build:css
+
       - name: データベースのセットアップ
         run: bundle exec rails db:create db:migrate RAILS_ENV=test
 
