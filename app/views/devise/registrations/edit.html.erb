@@ -1,42 +1,63 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm border-0 mt-3">
+      <div class="card-body p-4">
+        <h2 class="card-title text-center mb-4">アカウント編集</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+          <div class="mb-3">
+            <%= f.label :email, 'メールアドレス', class: 'form-label' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div class="alert alert-info small">
+              確認待ちのメールアドレス: <%= resource.unconfirmed_email %>
+            </div>
+          <% end %>
+
+          <div class="mb-3">
+            <%= f.label :password, '新しいパスワード', class: 'form-label' %>
+            <small class="text-muted">（変更しない場合は空欄のまま）</small>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+            <% if @minimum_password_length %>
+              <div class="form-text"><%= @minimum_password_length %>文字以上</div>
+            <% end %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password_confirmation, '新しいパスワード（確認）', class: 'form-label' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :current_password, '現在のパスワード', class: 'form-label' %>
+            <small class="text-muted">（変更を確定するために必要です）</small>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+          </div>
+
+          <div class="d-grid">
+            <%= f.submit '更新する', class: 'btn btn-primary btn-lg' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mt-4 border-danger">
+      <div class="card-body p-4">
+        <h5 class="text-danger mb-3">アカウントの削除</h5>
+        <p class="text-muted small">アカウントを削除すると元に戻せません。</p>
+        <%= button_to 'アカウントを削除する', registration_path(resource_name),
+              data: { turbo_confirm: '本当に削除しますか？' },
+              method: :delete,
+              class: 'btn btn-outline-danger' %>
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <%= link_to '← 戻る', :back, class: 'text-muted' %>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
-    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
-    <% if @minimum_password_length %>
-      <p><em><%= @minimum_password_length %> characters minimum</em></p>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password_confirmation %></p>
-    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
-    <p><%= f.password_field :current_password, autocomplete: "current-password" %></p>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
