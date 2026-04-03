@@ -5,12 +5,18 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      RAILS_ENV: test
+      NODE_ENV: test
 
     steps:
       - uses: actions/checkout@v4
@@ -27,14 +33,14 @@ jobs:
           node-version: '20'
           cache: 'yarn'
 
-      - name: npm パッケージのインストール
+      - name: Yarn パッケージのインストール
         run: yarn install --frozen-lockfile
 
       - name: CSS のビルド
         run: yarn build:css
 
       - name: データベースのセットアップ
-        run: bundle exec rails db:create db:migrate RAILS_ENV=test
+        run: bundle exec rails db:prepare
 
       - name: RSpec の実行
         run: bundle exec rspec
