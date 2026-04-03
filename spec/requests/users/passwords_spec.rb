@@ -12,6 +12,10 @@ RSpec.describe "Users::Passwords", type: :request do
     record
   end
 
+  # 最後に送信された再設定メール本文から、URLエンコード前の
+  # `reset_password_token` を取り出して返す。
+  #
+  # @return [String] パスワード再設定フォーム送信用の生トークン
   def raw_reset_password_token
     body = ActionMailer::Base.deliveries.last.body.encoded
     CGI.unescape(body.match(/reset_password_token=([^"&]+)/)[1])

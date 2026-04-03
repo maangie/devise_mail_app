@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Request limits", type: :request do
+RSpec.describe "リクエスト制限", type: :request do
   let(:app) { Rack::MockRequest.new(Rails.application) }
 
-  it "pins Rack query parser limits in application boot" do
+  it "アプリ起動時にRackのクエリパーサ制限を固定する" do
     parser = Rack::Utils.default_query_parser
 
     expect(Rack::Utils.param_depth_limit).to eq(32)
@@ -12,7 +12,7 @@ RSpec.describe "Request limits", type: :request do
     expect(Rack::Utils.multipart_total_part_limit).to eq(1_024)
   end
 
-  it "rejects requests with too many urlencoded parameters" do
+  it "urlencodedパラメータが多すぎるリクエストを拒否する" do
     body = ([ "user[email]=user@example.com", "user[password]=password123" ] +
       (1..1_100).map { |index| "extra#{index}=1" }).join('&')
 
