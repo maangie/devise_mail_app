@@ -11,6 +11,43 @@ RSpec.describe "Users::Registrations", type: :request do
     u
   end
 
+  describe "POST /users (新規登録)" do
+    before { ActionMailer::Base.deliveries.clear }
+
+    it "未確認ユーザーを作成して確認メールを送信する" do
+      expect {
+        post user_registration_path, params: {
+          user: {
+            email: 'new-user@example.com',
+            password: 'password123',
+            password_confirmation: 'password123'
+          }
+        }
+      }.to change(User, :count).by(1)
+       .and change { ActionMailer::Base.deliveries.count }.by(1)
+
+      created_user = User.find_by(email: 'new-user@example.com')
+
+      expect(created_user).to be_present
+      expect(created_user).not_to be_confirmed
+      expect(response).to have_http_status(:see_other)
+    end
+
+    it "不正なパラメータではユーザーを作成しない" do
+      expect {
+        post user_registration_path, params: {
+          user: {
+            email: 'invalid-user@example.com',
+            password: 'password123',
+            password_confirmation: 'different-password'
+          }
+        }
+      }.not_to change(User, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+  end
+
   describe "DELETE /users (アカウント削除)" do
     context "ログイン済みユーザーの場合" do
       before { login_as user, scope: :user }
