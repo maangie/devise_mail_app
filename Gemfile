@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '4.0.9'
 
 gem 'rails', '~> 8.0'
-gem 'sqlite3', '~> 2.0'
+gem 'sqlite3', '~> 2.9'
 gem 'puma', '>= 5.0'
 gem 'jbuilder'
 gem 'devise'
