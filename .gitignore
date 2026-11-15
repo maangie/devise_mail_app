@@ -20,6 +20,7 @@
 !/tmp/.keep
 
 /node_modules
+/node_modules.noindex
 /yarn-error.log
 
 .byebug_history
